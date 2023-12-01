@@ -1,3 +1,29 @@
+@import '@/styles/_variables.scss';
+
 .container {
-	padding: 0 100px;
+  padding: 0 100px;
+  padding-bottom: 90px;
+  display: flex;
+  flex-direction: column;
+
+  .submitForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+
+    .button {
+      display: flex;
+      justify-content: center;
+    }
+
+    .text {
+      margin-left: 12px;
+      color: $color-grey-input;
+      font-family: Arial;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+    }
+  }
 }

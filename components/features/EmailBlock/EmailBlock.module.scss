@@ -1,0 +1,29 @@
+@import '@/styles/_variables.scss';
+
+.wrapper {
+  padding-top: 40px;
+
+  .input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .inputCheckboxForm {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .inputCheckbox {
+    position: absolute;
+    left: 170px;
+  }
+
+	.text {
+		position: absolute;
+		left: 360px;
+	}
+}

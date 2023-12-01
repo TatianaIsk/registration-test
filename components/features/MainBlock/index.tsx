@@ -8,7 +8,7 @@ import Select from '@/components/ui/Select';
 import s from './MainBlock.module.scss';
 
 const MainBlock = () => (
-  <div className={s.wrapper}>
+  <form className={s.wrapper}>
     <Title name='Человек' />
     <div className={s.input}>
       <Label required>Имя</Label>
@@ -22,7 +22,7 @@ const MainBlock = () => (
       <Label required>Ваш город</Label>
       <Select options={cities} />
     </div>
-  </div>
+  </form>
 );
 
 export default MainBlock;
