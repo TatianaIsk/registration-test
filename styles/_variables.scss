@@ -2,18 +2,19 @@
 $color-black: #000;
 $color-grey-text: #7e7e7e;
 $color-grey-title: #666666;
-$color-grey-select: #999999;
+$color-grey-input: #999999;
 $color-red: #ff0000;
 $color-green: #71c838;
 
 // fonts
 @font-face {
   font-family: 'Arial';
-  font-weight: bold;
-  src: local('Arial Bold'), url('./fonts/arial-bold.woff'), format('woff');
+  font-style: normal;
+  src: local('Arial Normal'), url('./fonts/ArialMT.woff'), format('woff');
 }
 
-@font-face {  font-family: 'Arial';
+@font-face {
+  font-family: 'Arial';
   font-style: italic;
-  src: local('Arial Italic'), url('./fonts/arial-italic.woff'), format('woff');
+  src: local('Arial Italic'), url('./fonts/Arial-ItalicMT.woff'), format('woff');
 }

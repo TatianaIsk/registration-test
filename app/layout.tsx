@@ -8,7 +8,7 @@ interface RootLayoutProps extends PropsWithChildren {}
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body style={{ fontFamily: 'Arial' }}>{children}</body>
     </html>
   );
 };

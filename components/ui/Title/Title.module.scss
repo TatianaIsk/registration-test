@@ -1,0 +1,15 @@
+@import '@/styles/_variables.scss';
+
+.title {
+  color: $color-grey-title;
+  font-family: Arial;
+  font-size: 30px;
+  font-style: bold;
+  font-weight: 700;
+  line-height: normal;
+	margin-bottom: 50px;
+
+	.titleName {
+		color: $color-black;
+	}
+}

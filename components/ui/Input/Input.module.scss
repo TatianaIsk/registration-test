@@ -1,0 +1,26 @@
+@import '@/styles/_variables.scss';
+
+.input {
+  width: 335px;
+  border: 1px solid $color-grey-input;
+  padding: 6px 12px;
+
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+  margin-right: 770px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $color-grey-text;
+  }
+
+  &:placeholder-shown {
+    color: $color-black;
+  }
+}
