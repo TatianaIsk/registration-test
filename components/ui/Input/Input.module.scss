@@ -23,4 +23,8 @@
   &:placeholder-shown {
     color: $color-black;
   }
+
+  &:checked {
+    background-color: $color-green;
+  }
 }

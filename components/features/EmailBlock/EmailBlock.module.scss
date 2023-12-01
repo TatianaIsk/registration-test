@@ -22,8 +22,25 @@
     left: 170px;
   }
 
-	.text {
-		position: absolute;
-		left: 360px;
-	}
+  .text {
+    position: absolute;
+    left: 360px;
+  }
+
+  .inputPhone {
+    width: 335px;
+    border: 1px solid $color-grey-input;
+    padding: 6px 12px;
+
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    margin-right: 770px;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
