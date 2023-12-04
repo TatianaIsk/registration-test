@@ -28,7 +28,10 @@
 }
 
 .checkbox:checked + .checkmark {
-  background-color: green;
+  background-image:  url('~/assets/checkbox.svg');
+	background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .labelText {

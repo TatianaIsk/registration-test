@@ -30,7 +30,8 @@ const MainPage = () => {
       <div className={s.emailBlock}>
         <InputPhone label='Номер телефона' />
         <Input label='Электронная почта' placeholder='Введите электронную почту' name='email' htmlFor='email' />
-        <Checkbox label='Я согласен'/>
+        <Checkbox label='Я согласен' />
+        <p className={s.textCheckbox}>принимать актуальную информацию на емейл</p>
       </div>
       <div className={s.submitForm}>
         <Button className={s.button} type='submit' onClick={() => setLastModified(new Date())}>
