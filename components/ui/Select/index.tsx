@@ -1,9 +1,5 @@
-'use client';
-
 import { useState, useEffect } from 'react';
-
 import clsx from 'clsx';
-
 import s from './Select.module.scss';
 
 interface Option {
@@ -18,10 +14,19 @@ interface RawOption {
 
 interface SelectProps {
   options: RawOption[];
-  className?: string;
+  onChange?: (value: string) => void;
+  value?: string;
+  name?: string;
+  labelSelect?: string;
+  htmlFor?: string;
+  required?: boolean;
+  classNames?: {
+    selectBlock?: string;
+    select?: string;
+  };
 }
 
-const Select: React.FC<SelectProps> = ({ options, className }) => {
+const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, labelSelect, htmlFor, required }) => {
   const [sortedOptions, setSortedOptions] = useState<Option[]>([]);
 
   useEffect(() => {
@@ -43,14 +48,32 @@ const Select: React.FC<SelectProps> = ({ options, className }) => {
     setSortedOptions(sortedCities);
   }, [options]);
 
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (onChange) {
+      onChange(e.target.value);
+    }
+  };
+
   return (
-    <select className={clsx(s.select, className)}>
-      {sortedOptions.map(({ value, label }) => (
-        <option key={value} value={value}>
-          {label}
-        </option>
-      ))}
-    </select>
+    <div className={clsx(s.selectBlock, classNames?.selectBlock)}>
+      {labelSelect && (
+        <label className={s.label} htmlFor={htmlFor}>
+          {labelSelect}
+          {required && (
+            <span style={{ color: 'red' }} className={s.labelReq}>
+              *
+            </span>
+          )}
+        </label>
+      )}
+      <select id={htmlFor} className={clsx(s.select, classNames?.select)} onChange={handleChange} value={value} name={name}>
+        {sortedOptions.map(({ value, label }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 

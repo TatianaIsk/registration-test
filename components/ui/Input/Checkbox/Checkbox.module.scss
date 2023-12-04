@@ -1,0 +1,36 @@
+@import '@/styles/_variables.scss';
+
+.checkboxBlock {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: flex-end;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkmark {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  border: 1px solid $color-grey-input;
+  transition: background-color 0.3s;
+}
+
+.checkbox:checked + .checkmark {
+  background-color: green;
+}
+
+.labelText {
+  margin-right: 150px; 
+}

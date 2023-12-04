@@ -1,16 +1,24 @@
 @import '@/styles/_variables.scss';
 
-.selectBlock {
+.inputBlock {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
 
-  .select {
-    background-color: $color-white;
+  .label {
+    color: $color-black;
+    font-family: Arial;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 19px;
+  }
+
+  .inputPhone {
     width: 335px;
     border: 1px solid $color-grey-input;
-    padding: 8px 12px;
+    padding: 6px 12px;
 
     font-family: Arial;
     font-size: 16px;
@@ -22,22 +30,5 @@
     &:focus {
       outline: none;
     }
-
-    &::placeholder {
-      color: $color-grey-text;
-    }
-
-    &:placeholder-shown {
-      color: $color-black;
-    }
-  }
-
-  .label {
-    color: $color-black;
-    font-family: Arial;
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 19px;
   }
 }
