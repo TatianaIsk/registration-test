@@ -128,7 +128,7 @@ const MainPage = () => {
           value={state.email}
           onChange={onHandleChange}
         />
-        {state.errorEmail && <p className='text-red-500 mt-2 text-xs absolute top-[720px] left-[330px] xl:left-[345px] md:left-[331px]'>{state.errorEmail}</p>}
+        {state.errorEmail && <p className='text-red-500 mt-2 text-xs absolute top-[720px] left-[330px]'>{state.errorEmail}</p>}
         <Checkbox label='Я согласен' value={state.checkbox.toString()} onChange={onHandleChange} />
         <p className={s.textCheckbox}>принимать актуальную информацию на емейл</p>
       </div>
