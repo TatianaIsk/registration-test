@@ -10,14 +10,12 @@ interface InputProps extends ComponentPropsWithRef<'input'> {
   required?: boolean;
   htmlFor?: string;
   classNames?: {
-    inputBlock: string;
-    input: string;
+    inputBlock?: string;
+    input?: string;
   };
-  error?: boolean;
-  errorMessage?: string;
 }
 
-const InputPhone: React.FC<InputProps> = ({ classNames, disabled, label, required, htmlFor, errorMessage, error }) => (
+const InputPhone: React.FC<InputProps> = ({ classNames, label, required, htmlFor }) => (
   <div className={clsx(s.inputBlock, classNames?.inputBlock)}>
     {label && (
       <label className={s.label} htmlFor={htmlFor}>
@@ -29,8 +27,7 @@ const InputPhone: React.FC<InputProps> = ({ classNames, disabled, label, require
         )}
       </label>
     )}
-    <MaskedInput mask='+7 (999) 999-99-99' alwaysShowMask className={clsx(s.inputPhone, { [s.error]: error })} id={htmlFor} />
-    {error && errorMessage && <p className={s.errorMsg}>{errorMessage}</p>}
+    <MaskedInput mask='+7 (999) 999-99-99' alwaysShowMask className={clsx(s.inputPhone, classNames?.input)} id={htmlFor} />
   </div>
 );
 

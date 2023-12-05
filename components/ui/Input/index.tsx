@@ -9,14 +9,12 @@ interface InputProps extends ComponentPropsWithRef<'input'> {
   required?: boolean;
   htmlFor?: string;
   classNames?: {
-    inputBlock: string;
-    input: string;
+    inputBlock?: string;
+    input?: string;
   };
-  error?: boolean;
-  errorMessage?: string;
 }
 
-const Input: React.FC<InputProps> = ({ classNames, disabled, label, required, htmlFor, error, errorMessage, ...props }) => (
+const Input: React.FC<InputProps> = ({ classNames, disabled, label, required, htmlFor, ...props }) => (
   <div className={clsx(s.inputBlock, classNames?.inputBlock)}>
     {label && (
       <label className={s.label} htmlFor={htmlFor}>
@@ -28,8 +26,7 @@ const Input: React.FC<InputProps> = ({ classNames, disabled, label, required, ht
         )}
       </label>
     )}
-    <input id={htmlFor} className={clsx(s.input, classNames?.input, { [s.error]: error })} disabled={disabled} {...props} />
-    {error && errorMessage && <p className={s.errorMsg}>{errorMessage}</p>}
+    <input id={htmlFor} className={clsx(s.input, classNames?.input)} disabled={disabled} {...props} />
   </div>
 );
 

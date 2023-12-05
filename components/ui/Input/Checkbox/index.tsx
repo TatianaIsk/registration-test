@@ -6,9 +6,9 @@ interface CheckboxProps extends ComponentPropsWithRef<'input'> {
   label?: string;
   required?: boolean;
   classNames?: {
-    checkboxBlock: string;
-    checkbox: string;
-    checkmark: string;
+    checkboxBlock?: string;
+    checkbox?: string;
+    checkmark?: string;
   };
 }
 

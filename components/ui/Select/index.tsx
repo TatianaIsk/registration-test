@@ -25,11 +25,9 @@ interface SelectProps {
     selectBlock?: string;
     select?: string;
   };
-  error?: boolean;
-  errorMessage?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, labelSelect, htmlFor, required, errorMessage, error }) => {
+const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, labelSelect, htmlFor, required }) => {
   const [sortedOptions, setSortedOptions] = useState<Option[]>([]);
   const [largestCity, setLargestCity] = useState<Option | null>(null);
 
@@ -69,7 +67,7 @@ const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, n
           )}
         </label>
       )}
-      <select id={htmlFor} className={clsx(s.select, classNames?.select, { [s.error]: error })} onChange={handleChange} value={value} name={name}>
+      <select id={htmlFor} className={clsx(s.select, classNames?.select)} onChange={handleChange} value={value} name={name}>
         {largestCity && (
           <option key={largestCity.value} value={largestCity.value}>
             {largestCity.label}

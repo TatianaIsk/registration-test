@@ -38,9 +38,13 @@
     @media screen and (max-width: $mobile-l) {
       left: 245px;
       font-size: 14px;
-      top: 1000px;
-      width: 200px;
+      top: 965px;
+      width: 250px;
     }
+  }
+
+  .inputError {
+    border: 1px solid $color-red;
   }
 
   .submitForm {

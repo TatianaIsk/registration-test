@@ -1,4 +1,4 @@
-import MainPageState from "./MainPageState";
+import MainPageState from './MainPageState';
 
 const initialState: MainPageState = {
   firstName: '',
@@ -9,6 +9,13 @@ const initialState: MainPageState = {
   phone: '',
   email: '',
   checkbox: false,
+
+  errorFirstName: '',
+  errorLastName: '',
+  errorSelect: '',
+  errorPassword: '',
+  errorConfirm: '',
+  errorEmail: '',
 };
 
 export default initialState;
