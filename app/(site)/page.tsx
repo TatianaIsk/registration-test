@@ -26,7 +26,7 @@ const MainPage = () => {
   };
 
   const onSelectCityChange = (value: string) => {
-    setState(prev => ({ ...prev, selectCity: value }));
+    setState(prev => ({ ...prev, selectCities: value }));
   };
 
   const validateForm = () => {
@@ -53,7 +53,7 @@ const MainPage = () => {
     const formData = {
       firstName: state.firstName,
       lastName: state.lastName,
-      selectCity: state.selectCity,
+      selectCities: state.selectCities,
       password: state.password,
       confirmPassword: state.confirmPassword,
       phone: state.phone,

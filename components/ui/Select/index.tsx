@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+
 import clsx from 'clsx';
 import s from './Select.module.scss';
 
@@ -30,6 +31,7 @@ interface SelectProps {
 
 const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, labelSelect, htmlFor, required, errorMessage, error }) => {
   const [sortedOptions, setSortedOptions] = useState<Option[]>([]);
+  const [largestCity, setLargestCity] = useState<Option | null>(null);
 
   useEffect(() => {
     const filteredOptions = options
@@ -40,14 +42,13 @@ const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, n
         population: parseInt(raw.population),
       }));
 
-    const sortedCities = filteredOptions.sort((a, b) => {
-      if (b.population !== a.population) {
-        return b.population - a.population;
-      }
-      return a.label.localeCompare(b.label);
+    const largestCity = filteredOptions.reduce((prev, current) => {
+      return prev.population > current.population ? prev : current;
     });
 
-    setSortedOptions(sortedCities);
+    const sortedCities = filteredOptions.filter(option => option !== largestCity).sort((a, b) => a.label.localeCompare(b.label));
+
+    setSortedOptions([largestCity, ...sortedCities]);
   }, [options]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -69,6 +70,11 @@ const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, n
         </label>
       )}
       <select id={htmlFor} className={clsx(s.select, classNames?.select, { [s.error]: error })} onChange={handleChange} value={value} name={name}>
+        {largestCity && (
+          <option key={largestCity.value} value={largestCity.value}>
+            {largestCity.label}
+          </option>
+        )}
         {sortedOptions.map(({ value, label }) => (
           <option key={value} value={value}>
             {label}

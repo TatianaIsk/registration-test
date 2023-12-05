@@ -26,7 +26,7 @@ export const validateField = ({ name, value, formValues }: ValidationParams): Va
         isValid = false;
         errorMessage = 'Это поле обязательно';
       }
-    } else if (name === 'cities') {
+    } else if (name === 'selectCities') {
       if (value === '') {
         isValid = false;
         errorMessage = 'Это поле обязательно';
