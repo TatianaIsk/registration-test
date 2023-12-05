@@ -24,9 +24,11 @@ interface SelectProps {
     selectBlock?: string;
     select?: string;
   };
+  error?: boolean;
+  errorMessage?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, labelSelect, htmlFor, required }) => {
+const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, labelSelect, htmlFor, required, errorMessage, error }) => {
   const [sortedOptions, setSortedOptions] = useState<Option[]>([]);
 
   useEffect(() => {
@@ -66,7 +68,7 @@ const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, n
           )}
         </label>
       )}
-      <select id={htmlFor} className={clsx(s.select, classNames?.select)} onChange={handleChange} value={value} name={name}>
+      <select id={htmlFor} className={clsx(s.select, classNames?.select, { [s.error]: error })} onChange={handleChange} value={value} name={name}>
         {sortedOptions.map(({ value, label }) => (
           <option key={value} value={value}>
             {label}

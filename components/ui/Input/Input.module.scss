@@ -42,5 +42,9 @@
     &:checked {
       background-color: $color-green;
     }
+
+    .error {
+      border: 1px solid $color-red;
+    }
   }
 }

@@ -30,6 +30,10 @@
     &:placeholder-shown {
       color: $color-black;
     }
+
+    .error {
+      border: 1px solid $color-red;
+    }
   }
 
   .label {

@@ -21,7 +21,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ classNames, label, required, ...pro
           {required && <span style={{ color: 'red' }}>*</span>}
         </span>
       )}
-      <input type='checkbox' className={s.checkbox} />
+      <input type='checkbox' className={s.checkbox} {...props} />
       <span className={clsx(s.checkmark, classNames?.checkmark)}></span>
     </label>
   </div>
