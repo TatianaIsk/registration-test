@@ -68,6 +68,7 @@ const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, n
         </label>
       )}
       <select id={htmlFor} className={clsx(s.select, classNames?.select)} onChange={handleChange} value={value} name={name}>
+        <option className={s.option}>Выберите город</option>
         {largestCity && (
           <option key={largestCity.value} value={largestCity.value}>
             {largestCity.label}

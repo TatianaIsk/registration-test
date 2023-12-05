@@ -18,8 +18,20 @@ import s from './MainPage.module.scss';
 
 const MainPage = () => {
   const [lastModified, setLastModified] = useState<Date | null>(null);
-
   const [state, setState] = useState<MainPageState>(initialState);
+
+  useEffect(() => {
+    const savedLastModified = localStorage.getItem('lastModified');
+    if (savedLastModified) {
+      setLastModified(new Date(savedLastModified));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (lastModified) {
+      localStorage.setItem('lastModified', lastModified.toISOString());
+    }
+  }, [lastModified]);
 
   const onHandleChange = ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement>) => {
     setState(prev => ({ ...prev, [name]: value }));
@@ -29,13 +41,6 @@ const MainPage = () => {
     setState(prev => ({ ...prev, selectCities: value }));
   };
 
-  useEffect(() => {
-    const savedLastModified = localStorage.getItem('lastModified');
-    if (savedLastModified) {
-      setLastModified(new Date(savedLastModified));
-    }
-  }, []);
-
   const onSubmit = (e: React.FormEvent) => {
     validation(state, setState);
     e.preventDefault();
@@ -43,23 +48,10 @@ const MainPage = () => {
     setLastModified(new Date());
   };
 
-  useEffect(() => {
-    if (lastModified) {
-      localStorage.setItem('lastModified', lastModified.toISOString());
-    }
-  }, [lastModified]);
-
   const collectFormData = () => {
-    const formData = {
-      firstName: state.firstName,
-      lastName: state.lastName,
-      selectCities: state.selectCities,
-      password: state.password,
-      confirmPassword: state.confirmPassword,
-      phone: state.phone,
-      email: state.email,
-      checkbox: state.checkbox,
-    };
+    const { firstName, lastName, selectCities, password, confirmPassword, phone, email, checkbox } = state;
+
+    const formData = { firstName, lastName, selectCities, password, confirmPassword, phone, email, checkbox };
 
     console.log(JSON.stringify(formData));
   };

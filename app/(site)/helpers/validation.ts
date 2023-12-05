@@ -33,8 +33,8 @@ export const validation = (state: MainPageState, setState: React.Dispatch<React.
     setState(prev => ({ ...prev, errorConfirm: '' }));
   }
 
-  if (state.checkbox === true) {
-    setState(prev => ({ ...prev, errorEmail: !state.email ? 'Это поле обязательное' : !/^.+@.+\..+$/.test(state.email) ? 'Неверный формат электронной почты' : '' }));
+  if (state.email) {
+    setState(prev => ({ ...prev, errorEmail: state.checkbox ? (!state.email ? 'Это поле обязательное' : !/^.+@.+\..+$/.test(state.email) ? 'Неверный формат электронной почты' : '') : '' }));
   } else {
     setState(prev => ({ ...prev, errorEmail: '' }));
   }
