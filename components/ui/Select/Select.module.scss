@@ -6,6 +6,11 @@
   align-items: center;
   margin-bottom: 40px;
 
+  @media screen and (max-width: $mobile-l) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .select {
     background-color: $color-white;
     width: 335px;
@@ -34,6 +39,18 @@
     .error {
       border: 1px solid $color-red;
     }
+
+    @media screen and (max-width: $desktop) {
+      margin-right: 500px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      margin-right: 0;
+    }
+
+    @media screen and (max-width: $mobile-l) {
+      width: 300px;
+    }
   }
 
   .label {
@@ -43,5 +60,10 @@
     font-style: normal;
     font-weight: 300;
     line-height: 19px;
+    margin-bottom: 0;
+
+    @media screen and (max-width: $mobile-l) {
+      margin-bottom: 10px;
+    }
   }
 }

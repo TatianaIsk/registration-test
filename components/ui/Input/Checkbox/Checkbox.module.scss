@@ -36,4 +36,16 @@
 
 .labelText {
   margin-right: 150px; 
+
+  @media screen and (max-width: $desktop) {
+    margin-right: 160px;
+  }
+
+  @media screen and (max-width: $mobile) {
+    margin-right: 150px;
+  }
+
+  @media screen and (max-width: $mobile-l) {
+    margin-right: 30px;
+  }
 }

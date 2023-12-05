@@ -26,6 +26,21 @@
     top: 767px;
     position: absolute;
     left: 360px;
+
+    @media screen and (max-width: $desktop) {
+      left: 370px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      left: 360px;
+    }
+
+    @media screen and (max-width: $mobile-l) {
+      left: 245px;
+      font-size: 14px;
+      top: 1000px;
+      width: 200px;
+    }
   }
 
   .submitForm {

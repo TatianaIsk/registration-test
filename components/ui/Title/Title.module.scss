@@ -6,10 +6,15 @@
   font-size: 30px;
   font-style: bold;
   font-weight: 700;
-  line-height: normal;
+  line-height: 1;
 	margin-bottom: 50px;
 
 	.titleName {
 		color: $color-black;
 	}
+
+  @media screen and (max-width: $mobile-l) {
+    font-size: 27px;
+    line-height: 1.4;
+  }
 }

@@ -49,6 +49,21 @@ const MainPage = () => {
     return isValid;
   };
 
+  const collectFormData = () => {
+    const formData = {
+      firstName: state.firstName,
+      lastName: state.lastName,
+      selectCity: state.selectCity,
+      password: state.password,
+      confirmPassword: state.confirmPassword,
+      phone: state.phone,
+      email: state.email,
+      checkbox: state.checkbox,
+    };
+
+    console.log(JSON.stringify(formData));
+  };
+
   return (
     <div className={s.container}>
       <Title name='Человек' />
@@ -74,6 +89,7 @@ const MainPage = () => {
           onClick={() => {
             if (validateForm()) {
               setLastModified(new Date());
+              collectFormData();
             }
           }}
         >

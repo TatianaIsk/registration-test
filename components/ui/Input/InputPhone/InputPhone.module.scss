@@ -6,6 +6,11 @@
   align-items: center;
   margin-bottom: 40px;
 
+  @media screen and (max-width: $mobile-l) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .label {
     color: $color-black;
     font-family: Arial;
@@ -13,6 +18,10 @@
     font-style: normal;
     font-weight: 300;
     line-height: 19px;
+
+    @media screen and (max-width: $mobile-l) {
+      margin-bottom: 10px;
+    }
   }
 
   .inputPhone {
@@ -33,6 +42,18 @@
 
     .error {
       border: 1px solid $color-red;
+    }
+
+    @media screen and (max-width: $desktop) {
+      margin-right: 500px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      margin-right: 0;
+    }
+
+    @media screen and (max-width: $mobile-l) {
+      width: 300px;
     }
   }
 }
