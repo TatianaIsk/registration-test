@@ -2,7 +2,7 @@ import { ComponentPropsWithRef } from 'react';
 import clsx from 'clsx';
 import s from './Checkbox.module.scss';
 
-interface CheckboxProps extends ComponentPropsWithRef<'input'> {
+interface CheckboxProps extends Omit<ComponentPropsWithRef<'input'>, 'value'> {
   label?: string;
   required?: boolean;
   classNames?: {
@@ -10,9 +10,10 @@ interface CheckboxProps extends ComponentPropsWithRef<'input'> {
     checkbox?: string;
     checkmark?: string;
   };
+  value?: boolean;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ classNames, label, required, ...props }) => (
+const Checkbox: React.FC<CheckboxProps> = ({ classNames, label, required, value, ...props }) => (
   <div className={clsx(s.checkboxBlock, classNames?.checkboxBlock)}>
     <label className={s.checkboxLabel}>
       {label && (
@@ -21,7 +22,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ classNames, label, required, ...pro
           {required && <span style={{ color: 'red' }}>*</span>}
         </span>
       )}
-      <input type='checkbox' className={s.checkbox} {...props} />
+      <input type='checkbox' className={s.checkbox} {...props} checked={value} />
       <span className={clsx(s.checkmark, classNames?.checkmark)}></span>
     </label>
   </div>

@@ -39,3 +39,11 @@ export const validation = (state: MainPageState, setState: React.Dispatch<React.
     setState(prev => ({ ...prev, errorEmail: '' }));
   }
 };
+
+export const onCheckbox = (event: React.ChangeEvent<HTMLInputElement>, state: MainPageState, setState: React.Dispatch<React.SetStateAction<MainPageState>>) => {
+  if (event.target.checked) {
+    setState(prev => ({ ...prev, errorEmail: !state.email ? 'Это поле обязательное' : !/^.+@.+\..+$/.test(state.email) ? 'Неверный формат электронной почты' : '' }));
+  } else {
+    setState(prev => ({ ...prev, errorEmail: '' }));
+  }
+};

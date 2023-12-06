@@ -1,6 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { validation } from './helpers/validation';
+import { useState, useEffect, ChangeEventHandler } from 'react';
+import { validation, onCheckbox } from './helpers/validation';
 
 import cities from '@/json/cities.json';
 
@@ -54,6 +54,10 @@ const MainPage = () => {
     const formData = { firstName, lastName, selectCities, password, confirmPassword, phone, email, checkbox };
 
     console.log(JSON.stringify(formData));
+  };
+
+  const handleCheckboxChange: ChangeEventHandler<HTMLInputElement> = event => {
+    onCheckbox(event, state, setState);
   };
 
   return (
@@ -129,7 +133,7 @@ const MainPage = () => {
           onChange={onHandleChange}
         />
         {state.errorEmail && <p className='text-red-500 mt-2 text-xs absolute top-[720px] left-[330px]'>{state.errorEmail}</p>}
-        <Checkbox label='Я согласен' value={state.checkbox.toString()} onChange={onHandleChange} />
+        <Checkbox label='Я согласен' checked={state.checkbox} onChange={handleCheckboxChange} />
         <p className={s.textCheckbox}>принимать актуальную информацию на емейл</p>
       </div>
       <div className={s.submitForm}>
