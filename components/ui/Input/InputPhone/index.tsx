@@ -3,6 +3,8 @@ import MaskedInput from 'react-input-mask';
 
 import clsx from 'clsx';
 
+import Label from '../../Label';
+
 import s from './InputPhone.module.scss';
 
 interface InputProps extends ComponentPropsWithRef<'input'> {
@@ -17,16 +19,7 @@ interface InputProps extends ComponentPropsWithRef<'input'> {
 
 const InputPhone: React.FC<InputProps> = ({ classNames, label, required, htmlFor }) => (
   <div className={clsx(s.inputBlock, classNames?.inputBlock)}>
-    {label && (
-      <label className={s.label} htmlFor={htmlFor}>
-        {label}
-        {required && (
-          <span style={{ color: 'red' }} className={s.labelReq}>
-            *
-          </span>
-        )}
-      </label>
-    )}
+    {label && <Label label={label} htmlFor={htmlFor} required={required} />}
     <MaskedInput mask='+7 (999) 999-99-99' alwaysShowMask className={clsx(s.inputPhone, classNames?.input)} id={htmlFor} />
   </div>
 );

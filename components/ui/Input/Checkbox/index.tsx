@@ -1,9 +1,11 @@
 import { ComponentPropsWithRef } from 'react';
 import clsx from 'clsx';
 import s from './Checkbox.module.scss';
+import Label from '../../Label';
 
 interface CheckboxProps extends Omit<ComponentPropsWithRef<'input'>, 'value'> {
   label?: string;
+  htmlFor?: string;
   required?: boolean;
   classNames?: {
     checkboxBlock?: string;
@@ -13,17 +15,12 @@ interface CheckboxProps extends Omit<ComponentPropsWithRef<'input'>, 'value'> {
   value?: boolean;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ classNames, label, required, value, ...props }) => (
+const Checkbox: React.FC<CheckboxProps> = ({ classNames, label, required, value, htmlFor, ...props }) => (
   <div className={clsx(s.checkboxBlock, classNames?.checkboxBlock)}>
     <label className={s.checkboxLabel}>
-      {label && (
-        <span className={s.labelText}>
-          {label}
-          {required && <span style={{ color: 'red' }}>*</span>}
-        </span>
-      )}
-      <input type='checkbox' className={s.checkbox} {...props} checked={value} />
+      <input type='checkbox' className={s.checkbox} {...props} checked={value} id={htmlFor} />
       <span className={clsx(s.checkmark, classNames?.checkmark)}></span>
+      {label && <Label label={label} htmlFor={htmlFor} required={required} className={s.label}/>}
     </label>
   </div>
 );

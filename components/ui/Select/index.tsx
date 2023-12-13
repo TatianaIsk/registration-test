@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 
+import Label from '../Label';
+
 import clsx from 'clsx';
+
 import s from './Select.module.scss';
 
 interface Option {
@@ -18,7 +21,7 @@ interface SelectProps {
   onChange?: (value: string) => void;
   value?: string;
   name?: string;
-  labelSelect?: string;
+  label?: string;
   htmlFor?: string;
   required?: boolean;
   classNames?: {
@@ -27,9 +30,9 @@ interface SelectProps {
   };
 }
 
-const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, labelSelect, htmlFor, required }) => {
+const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, label, htmlFor, required }) => {
   const [sortedOptions, setSortedOptions] = useState<Option[]>([]);
-  const [largestCity, setLargestCity] = useState<Option | null>(null);
+  const [largestCity] = useState<Option | null>(null);
 
   useEffect(() => {
     const filteredOptions = options
@@ -57,16 +60,7 @@ const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, n
 
   return (
     <div className={clsx(s.selectBlock, classNames?.selectBlock)}>
-      {labelSelect && (
-        <label className={s.label} htmlFor={htmlFor}>
-          {labelSelect}
-          {required && (
-            <span style={{ color: 'red' }} className={s.labelReq}>
-              *
-            </span>
-          )}
-        </label>
-      )}
+      {label && <Label label={label} htmlFor={htmlFor} required={required} />}
       <select id={htmlFor} className={clsx(s.select, classNames?.select)} onChange={handleChange} value={value} name={name}>
         <option className={s.option}>Выберите город</option>
         {largestCity && (

@@ -19,27 +19,20 @@
     margin-top: 40px;
   }
 
-  .textCheckbox {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    top: 763px;
-    position: absolute;
-    left: 360px;
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
 
-    @media screen and (max-width: $desktop) {
-      left: 370px;
-    }
+    .textCheckbox {
+      font-size: 21px;
+      font-style: normal;
+      font-weight: 400;
+      margin-right: 115px;
 
-    @media screen and (max-width: $mobile) {
-      left: 360px;
-    }
-
-    @media screen and (max-width: $mobile-l) {
-      left: 245px;
-      font-size: 14px;
-      top: 965px;
-      width: 250px;
+      @media screen and (max-width: $mobile-l) {
+        font-size: 14px;
+      }
     }
   }
 

@@ -11,19 +11,6 @@
     align-items: flex-start;
   }
 
-  .label {
-    color: $color-black;
-    font-family: Arial;
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 19px;
-
-    @media screen and (max-width: $mobile-l) {
-      margin-bottom: 10px;
-    }
-  }
-
   .input {
     width: 335px;
     border: 1px solid $color-grey-input;

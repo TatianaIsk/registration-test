@@ -1,49 +1,34 @@
-import MainPageState from '../utils/MainPageState';
+import * as yup from 'yup';
 
-export const validation = (state: MainPageState, setState: React.Dispatch<React.SetStateAction<MainPageState>>) => {
-  if (state.firstName.length === 0) {
-    setState(prev => ({ ...prev, errorFirstName: 'Это поле обязательное' }));
-  } else {
-    setState(prev => ({ ...prev, errorFirstName: '' }));
-  }
+export const validationSchema = yup.object().shape({
+  firstName: yup
+    .string()
+    .matches(/^[а-яА-ЯёЁ]$/, 'Должна использоваться кириллица')
+    .min(2, 'Используйте не менее 2 символов')
+    .required('Это поле должно быть заполнено'),
+  lastName: yup
+    .string()
+    .matches(/^[а-яА-ЯёЁ]{2,}$/, 'Должна использоваться кириллица')
+    .required('Это поле должно быть заполнено'),
+  selectCities: yup.string().required('Это поле должно быть заполнено'),
+  password: yup
+    .string()
+    .matches(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/gm, 'Пароль не надежен')
+    .min(5, 'Используйте не менее 5 символов')
+    .required('Укажите пароль'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password')], 'Пароли не совпадают')
+    .required('Это поле должно быть заполнено'),
+  phone: yup.string().matches(/^^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7}$/gm, 'Введите корректные данные'),
+  checkbox: yup.boolean(),
+  email: yup
+    .string()
+    .when('checkbox', {
+      is: true,
+      then: schema => schema.required('Email должен быть заполнен'),
+    })
+    .email('Введите верный email')
+    .matches(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/gm, 'Введите корректные данные'),
+});
 
-  if (state.lastName.length === 0) {
-    setState(prev => ({ ...prev, errorLastName: 'Это поле обязательное' }));
-  } else {
-    setState(prev => ({ ...prev, errorLastName: '' }));
-  }
-
-  if (state.selectCities.length === 0) {
-    setState(prev => ({ ...prev, errorSelect: 'Это поле обязательное' }));
-  } else {
-    setState(prev => ({ ...prev, errorSelect: '' }));
-  }
-
-  if (state.password.length === 0) {
-    setState(prev => ({ ...prev, errorPassword: 'Укажите пароль' }));
-  } else if (state.password.length < 8) {
-    setState(prev => ({ ...prev, errorPassword: 'Пароль должен содержать не менее 8 символов' }));
-  } else {
-    setState(prev => ({ ...prev, errorPassword: '' }));
-  }
-
-  if (state.password !== state.confirmPassword) {
-    setState(prev => ({ ...prev, errorConfirm: 'Пароли не совпадают' }));
-  } else {
-    setState(prev => ({ ...prev, errorConfirm: '' }));
-  }
-
-  if (state.checkbox === true) {
-    setState(prev => ({ ...prev, errorEmail: !state.email ? 'Это поле обязательное' : !/^.+@.+\..+$/.test(state.email) ? 'Неверный формат электронной почты' : '' }));
-  } else {
-    setState(prev => ({ ...prev, errorEmail: '' }));
-  }
-};
-
-export const onCheckbox = (event: React.ChangeEvent<HTMLInputElement>, state: MainPageState, setState: React.Dispatch<React.SetStateAction<MainPageState>>) => {
-  if (event.target.checked) {
-    setState(prev => ({ ...prev, errorEmail: !state.email ? 'Это поле обязательное' : !/^.+@.+\..+$/.test(state.email) ? 'Неверный формат электронной почты' : '' }));
-  } else {
-    setState(prev => ({ ...prev, errorEmail: '' }));
-  }
-};
