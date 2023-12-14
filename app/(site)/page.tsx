@@ -61,7 +61,7 @@ const MainPage = () => {
       <Title name='Человек' />
       <div className={s.mainBlock}>
         <Input {...register('firstName')} classNames={{ input: errors.firstName && s.inputError }} label='Имя' required placeholder='Введите имя' htmlFor='firstName' />
-        {errors.firstName && <Error>{errors.firstName.message}</Error>}
+        {errors.firstName && <Error className={s.error}>{errors.firstName.message}</Error>}
         <Input {...register('lastName')} classNames={{ input: errors.lastName && s.inputError }} label='Фамилия' required placeholder='Введите фамилию' htmlFor='lastName' />
         {errors.lastName && <Error>{errors.lastName.message}</Error>}
         <Select {...register('cities')} classNames={{ select: errors.selectCities && s.inputError }} options={cities} label='Ваш город' required htmlFor='cities' />

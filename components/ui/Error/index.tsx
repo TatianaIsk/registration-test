@@ -1,9 +1,13 @@
 import { PropsWithChildren } from 'react';
 
-import s from './Error.module.scss'
+import clsx from 'clsx';
 
-interface ErrorProps extends PropsWithChildren {}
+import s from './Error.module.scss';
 
-const Error: React.FC<ErrorProps> = ({ children }) => <p className={s.error}>{children}</p>;
+interface ErrorProps extends PropsWithChildren {
+  className?: string;
+}
+
+const Error: React.FC<ErrorProps> = ({ children, className }) => <p className={clsx(s.error)}>{children}</p>;
 
 export default Error;

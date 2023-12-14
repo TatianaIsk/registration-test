@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useSortedOptions } from '@/hooks/useSortedOptions';
+import { RawOption } from '@/types/RawOption';
 
 import Label from '../Label';
 
 import clsx from 'clsx';
 
 import s from './Select.module.scss';
-
-interface Option {
-  value: string;
-  label: string;
-}
-
-interface RawOption {
-  city: string;
-  population: string;
-}
 
 interface SelectProps {
   options: RawOption[];
@@ -31,40 +22,15 @@ interface SelectProps {
 }
 
 const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, label, htmlFor, required }) => {
-  const [sortedOptions, setSortedOptions] = useState<Option[]>([]);
-  const [largestCity] = useState<Option | null>(null);
-
-  useEffect(() => {
-    const filteredOptions = options
-      .filter(raw => parseInt(raw.population) > 50000)
-      .map(raw => ({
-        value: raw.city,
-        label: raw.city,
-        population: parseInt(raw.population),
-      }));
-
-    const largestCity = filteredOptions.reduce((prev, current) => {
-      return prev.population > current.population ? prev : current;
-    });
-
-    const sortedCities = filteredOptions.filter(option => option !== largestCity).sort((a, b) => a.label.localeCompare(b.label));
-
-    setSortedOptions([largestCity, ...sortedCities]);
-  }, [options]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (onChange) {
-      onChange(e.target.value);
-    }
-  };
+  const { sortedOptions, largestCity } = useSortedOptions(options);
 
   return (
     <div className={clsx(s.selectBlock, classNames?.selectBlock)}>
       {label && <Label label={label} htmlFor={htmlFor} required={required} />}
-      <select id={htmlFor} className={clsx(s.select, classNames?.select)} onChange={handleChange} value={value} name={name}>
+      <select id={htmlFor} className={clsx(s.select, classNames?.select)} value={value} name={name}>
         <option className={s.option}>Выберите город</option>
         {largestCity && (
-          <option key={largestCity.value} value={largestCity.value}>
+          <option key={largestCity.population} value={largestCity.population}>
             {largestCity.label}
           </option>
         )}
