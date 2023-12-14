@@ -20,18 +20,29 @@
   }
 
   .checkbox {
-    display: flex;
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    grid-gap: 10px;
     align-items: center;
     margin-bottom: 40px;
+
+    @media screen and (max-width: $desktop-s) {
+      grid-template-columns: 0.4fr 1fr;
+      grid-gap: 10px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      grid-template-columns: 0.4fr 1fr;
+      grid-gap: 10px;
+    }
 
     .textCheckbox {
       font-size: 21px;
       font-style: normal;
       font-weight: 400;
-      margin-right: 115px;
 
-      @media screen and (max-width: $mobile-l) {
-        font-size: 14px;
+      @media screen and (max-width: $mobile) {
+        font-size: 18px;
       }
     }
   }

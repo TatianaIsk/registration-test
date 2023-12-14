@@ -7,12 +7,15 @@ import clsx from 'clsx';
 
 import s from './Select.module.scss';
 import Error from '../Error';
+import { useFormContext } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 
 interface SelectProps {
   options: RawOption[];
   onChange?: (value: string) => void;
   value?: string;
-  name?: string;
+  name: string;
+  disabled?: boolean;
   label?: string;
   htmlFor?: string;
   required?: boolean;
@@ -23,14 +26,15 @@ interface SelectProps {
   error?: string;
 }
 
-const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, name, label, htmlFor, required, error }) => {
+const Select: React.FC<SelectProps> = ({ options, classNames, name, label, htmlFor, required, disabled }) => {
   const { sortedOptions, largestCity } = useSortedOptions(options);
+  const { register } = useFormContext();
 
   return (
     <div className={clsx(s.selectBlock, classNames?.selectBlock)}>
       {label && <Label label={label} htmlFor={htmlFor} required={required} />}
       <div className={s.errorBlock}>
-        <select id={htmlFor} className={clsx(s.select, classNames?.select)} value={value} name={name}>
+        <select id={htmlFor} className={clsx(s.select, classNames?.select)} {...register(name, { disabled })}>
           <option className={s.option}>Выберите город</option>
           {largestCity && (
             <option key={largestCity.population} value={largestCity.population}>
@@ -43,7 +47,7 @@ const Select: React.FC<SelectProps> = ({ options, classNames, onChange, value, n
             </option>
           ))}
         </select>
-        {error && <Error>{error}</Error>}
+        <ErrorMessage name={name} render={({ message }) => <Error>{message}</Error>} />
       </div>
     </div>
   );
