@@ -8,6 +8,6 @@ interface ErrorProps extends PropsWithChildren {
   className?: string;
 }
 
-const Error: React.FC<ErrorProps> = ({ children, className }) => <p className={clsx(s.error)}>{children}</p>;
+const Error: React.FC<ErrorProps> = ({ children, className }) => <p className={clsx(s.error, className)}>{children}</p>;
 
 export default Error;

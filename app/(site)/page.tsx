@@ -60,16 +60,44 @@ const MainPage = () => {
     <form className={s.container} onSubmit={onSubmit}>
       <Title name='Человек' />
       <div className={s.mainBlock}>
-        <Input {...register('firstName')} classNames={{ input: errors.firstName && s.inputError }} label='Имя' required placeholder='Введите имя' htmlFor='firstName' />
-        {errors.firstName && <Error className={s.error}>{errors.firstName.message}</Error>}
-        <Input {...register('lastName')} classNames={{ input: errors.lastName && s.inputError }} label='Фамилия' required placeholder='Введите фамилию' htmlFor='lastName' />
-        {errors.lastName && <Error>{errors.lastName.message}</Error>}
-        <Select {...register('cities')} classNames={{ select: errors.selectCities && s.inputError }} options={cities} label='Ваш город' required htmlFor='cities' />
-        {errors.selectCities && <Error>{errors.selectCities.message}</Error>}
+        <Input
+          {...register('firstName')}
+          classNames={{ input: errors.firstName && s.inputError }}
+          label='Имя'
+          required
+          placeholder='Введите имя'
+          htmlFor='firstName'
+          error={errors.firstName?.message}
+        />
+        <Input
+          {...register('lastName')}
+          classNames={{ input: errors.lastName && s.inputError }}
+          label='Фамилия'
+          required
+          placeholder='Введите фамилию'
+          htmlFor='lastName'
+          error={errors.lastName?.message}
+        />
+        <Select
+          {...register('cities')}
+          classNames={{ select: errors.selectCities && s.inputError }}
+          options={cities}
+          label='Ваш город'
+          required
+          htmlFor='cities'
+          error={errors.selectCities?.message}
+        />
       </div>
       <div className={s.passwordBlock}>
-        <Input {...register('password')} classNames={{ input: errors.password && s.inputError }} label='Пароль' placeholder='Введите пароль' htmlFor='password' type='password' />
-        {errors.password && <Error>{errors.password.message}</Error>}
+        <Input
+          {...register('password')}
+          classNames={{ input: errors.password && s.inputError }}
+          label='Пароль'
+          placeholder='Введите пароль'
+          htmlFor='password'
+          type='password'
+          error={errors.password?.message}
+        />
         <Input
           {...register('confirmPassword')}
           classNames={{ input: errors.confirmPassword && s.inputError }}
@@ -77,14 +105,19 @@ const MainPage = () => {
           placeholder='Повторите пароль'
           htmlFor='confirmPassword'
           type='password'
+          error={errors.confirmPassword?.message}
         />
-        {errors.confirmPassword && <Error>{errors.confirmPassword.message}</Error>}
       </div>
       <div className={s.emailBlock}>
-        <InputPhone {...register('phone')} classNames={{ input: errors.phone && s.inputError }} label='Номер телефона' />
-        {errors.phone && <Error>{errors.phone.message}</Error>}
-        <Input {...register('email')} classNames={{ input: errors.email && s.inputError }} label='Электронная почта' placeholder='Введите электронную почту' htmlFor='email' />
-        {errors.email && <Error>{errors.email.message}</Error>}
+        <InputPhone {...register('phone')} classNames={{ input: errors.phone && s.inputError }} label='Номер телефона' error={errors.phone?.message} />
+        <Input
+          {...register('email')}
+          classNames={{ input: errors.email && s.inputError }}
+          label='Электронная почта'
+          placeholder='Введите электронную почту'
+          htmlFor='email'
+          error={errors.email?.message}
+        />
         <div className={s.checkbox}>
           <p className={s.textCheckbox}>Я согласен</p>
           <Checkbox {...register('checkbox')} label='принимать актуальную информацию на емейл' />
