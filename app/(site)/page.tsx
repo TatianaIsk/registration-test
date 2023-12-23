@@ -1,11 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { FormProvider, useForm, useWatch } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { validationSchema } from './helpers/validation';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import cities from '@/json/cities.json';
 
+import { resolver } from './utils/resolver';
 import { MainPageState } from './utils/MainPageState';
 import initialState from './utils/initialState';
 
@@ -21,7 +20,7 @@ import s from './MainPage.module.scss';
 const MainPage = () => {
   const form = useForm<MainPageState>({
     defaultValues: initialState,
-    resolver: yupResolver(validationSchema),
+    resolver: resolver,
   });
 
   const {
